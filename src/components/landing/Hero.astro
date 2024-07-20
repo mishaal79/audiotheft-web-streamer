@@ -1,4 +1,7 @@
-import {Image} from 'astro:assets'; import heroPic from '../assets/portraitpic1.webp';
+---
+import { Image } from "astro:assets";
+import heroPic from "/src/assets/portraitpic1.webp";
+---
 
 <div class="relative">
   <div
@@ -34,6 +37,11 @@ import {Image} from 'astro:assets'; import heroPic from '../assets/portraitpic1.
         alt="hero pic"
         class="aspect-[3/2] w-full bg-black object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
       />
+      <!-- <img
+        src={heroPic.src}
+        alt="hero pic"
+        class="aspect-[3/2] w-full bg-black object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+      /> -->
     </div>
   </div>
 </div>
