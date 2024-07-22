@@ -3,6 +3,10 @@ import { Image } from "astro:assets";
 import heroPic from "/src/assets/portraitpic1.webp";
 ---
 
+<head>
+  <link rel="preload" href={heroPic.src} as="image" />
+</head>
+
 <div class="relative">
   <div
     class="mx-auto max-w-screen-xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8"
@@ -37,11 +41,6 @@ import heroPic from "/src/assets/portraitpic1.webp";
         alt="hero pic"
         class="aspect-[3/2] w-full bg-black object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
       />
-      <!-- <img
-        src={heroPic.src}
-        alt="hero pic"
-        class="aspect-[3/2] w-full bg-black object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
-      /> -->
     </div>
   </div>
 </div>
