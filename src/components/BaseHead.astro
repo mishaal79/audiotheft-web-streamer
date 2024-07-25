@@ -9,20 +9,16 @@ const {
   twitterImage = "/twitter-preview-image.png", // Assuming you have a separate image for Twitter
   author = "Qrius Global",
 } = Astro.props;
-const sanitizedTitle = title.toLowerCase().replaceAll(" ", "-");
 ---
 
 <Metas
   title={title}
   description={description.substring(0, 100)}
-  url={Astro.site
-    ? `${Astro.site}/${sanitizedTitle}`
-    : `https://lexingtonthemes.com/${sanitizedTitle}`}
+  url={Astro.site}
   image={socialImage}
   author={author}
   twitterImage={twitterImage}
 />
-<!-- HTML in your document's head -->
 <link rel="preconnect" href="https://rsms.me/" />
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 <link
