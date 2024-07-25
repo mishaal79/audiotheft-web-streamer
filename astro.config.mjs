@@ -7,7 +7,6 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   site: 'https://audiotheft.com',
   integrations: [tailwind(), sitemap()],
-  output: 'server',
   security: {
     checkOrigin: true
   },
