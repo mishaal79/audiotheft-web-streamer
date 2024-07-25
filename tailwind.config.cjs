@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        smoke:"#e9e9eb",
-        audio:"#f1f3f4",
+        smoke: "#e9e9eb",
+        audio: "#f1f3f4",
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
@@ -16,5 +16,5 @@ module.exports = {
     },
   },
   plugins: [
-  require('@tailwindcss/forms'),],
+    require('@tailwindcss/forms'),],
 }
