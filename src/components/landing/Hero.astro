@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import heroPic from "/src/assets/portraitpic1.webp";
+import logo from "/src/assets/logo-white.webp";
 ---
 
 <head>
@@ -19,17 +20,25 @@ import heroPic from "/src/assets/portraitpic1.webp";
           class="inline-flex items-center gap-3 font-light tracking-tight text-white"
           href="/"
         >
-          <!-- Insert audiotheft logo here -->
-          <span>AudioTheft</span>
+          <Image
+            src={logo}
+            alt="audiotheft logo"
+            class="aspect-[3/2] lg:aspect-auto object-fit h-10 w-10"
+          />
+          <!--TODO: stylize the below with the font audiotheft uses -->
+          AudioTheft
         </a>
 
         <p
           class="mt-8 text-4xl font-light lg:text-6xl text-balance tracking-tight text-white uppercase font-serif"
         >
-          Lorem ipsum
+          Dive into the mesmerizing world of organic soundscapes
         </p>
         <p class="mt-6 text-lg leading-8 font-light lg:text-xl text-zinc-400">
-          Lorem Ipsum
+          A producer of deep organic soundscapes, groovy basslines, and
+          hypnotizing melodies converge.<br /> with a knack for fusing genres like
+          Progressive, Melodic, and Organic House, he crafts an enchanting blend
+          that captivates audiences.
         </p>
       </div>
     </div>
