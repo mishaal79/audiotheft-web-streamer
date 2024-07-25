@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import heroPic from "/src/assets/portraitpic1.webp";
+import portrait from "/src/assets/portraitpic1.webp";
 import logo from "/src/assets/logo-white.webp";
 ---
 
 <head>
-  <link rel="preload" href={heroPic.src} as="image" />
+  <link rel="preload" href={portrait.src} as="image" />
 </head>
 
 <div class="relative">
@@ -46,7 +46,7 @@ import logo from "/src/assets/logo-white.webp";
       class="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0"
     >
       <Image
-        src={logo}
+        src={portrait}
         alt="hero pic"
         class="aspect-[3/2] w-full bg-black object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
       />
