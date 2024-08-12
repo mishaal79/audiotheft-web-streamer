@@ -12,6 +12,7 @@ module.exports = {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
         serif: ["Gilda Display", ...defaultTheme.fontFamily.serif],
+        groupe: ["Groupe", 'sans-serif']
       },
     },
   },
