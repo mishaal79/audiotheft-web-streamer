@@ -10,27 +10,28 @@ import logo from "/src/assets/logo-white.webp";
 
 <div class="relative">
   <div
-    class="mx-auto max-w-screen-xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8"
+    class="mx-auto max-w-screen-xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-3"
   >
     <div
       class="px-8 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6"
     >
       <div class="mx-auto max-w-lg lg:mx-0">
-        <a
-          class="inline-flex items-center gap-3 font-light tracking-tight text-white"
-          href="/"
-        >
-          <Image
-            src={logo}
-            alt="audiotheft logo"
-            class="aspect-[3/2] lg:aspect-auto object-fit h-10 w-10"
-          />
-          <!--TODO: stylize the below with the font audiotheft uses -->
-          <h1 class="font-groupe text-4xl">audio theft</h1>
-        </a>
-
+        <div class="flex items-center">
+          <a
+            class="inline-flex items-center gap-3 font-light tracking-tight text-white"
+            href="/"
+          >
+            <span class="font-groupe text-6xl">audio</span>
+            <Image
+              src={logo}
+              alt="audiotheft logo"
+              class="aspect-[3/2] lg:aspect-auto object-fit h-10 w-10"
+            />
+            <span class="font-groupe text-6xl">theft</span>
+          </a>
+        </div>
         <p
-          class="mt-8 text-4xl font-light lg:text-6xl text-balance tracking-tight text-white uppercase font-serif"
+          class="mt-14 text-3xl font-light lg:text-3xl text-balance tracking-tight text-white uppercase font-serif"
         >
           Dive into the mesmerizing world of organic soundscapes
         </p>
