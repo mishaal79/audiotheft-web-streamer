@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 const currentDate = new Date().getFullYear();
 ---
 
@@ -16,6 +17,8 @@ const currentDate = new Date().getFullYear();
                 href="https://soundcloud.com/audiotheft"
                 class="text-zinc-500 hover:"
               >
+                <Icon name="mdi:soundcloud" class="h-7 w-7 inline" />
+
                 SoundCloud
               </a>
             </li>
@@ -24,6 +27,7 @@ const currentDate = new Date().getFullYear();
                 href="https://www.mixcloud.com/dhiloghe-ashwin/"
                 class="text-zinc-500 hover:"
               >
+                <Icon name="mdi:mixcloud" class="h-7 w-7 inline" />
                 MixCloud
               </a>
             </li>
@@ -39,7 +43,8 @@ const currentDate = new Date().getFullYear();
                 href="https://www.instagram.com/audiothefttt/"
                 class="text-zinc-500 hover:"
               >
-                @audiotheft
+                <Icon name="mdi:instagram" class="h-7 w-7 inline" />
+                Follow me
               </a>
             </li>
           </ul>
