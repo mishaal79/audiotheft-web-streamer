@@ -23,28 +23,41 @@
     renderer.setPixelRatio(window.devicePixelRatio); // Adjust for screen resolution
     container.appendChild( renderer.domElement );
 
-    // Basic cube
-    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    const material = new THREE.MeshStandardMaterial( { color: 0x00ff00 } ); // Green color, requires light
-    const cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
+    // Deck Surface (Plane)
+    const planeGeometry = new THREE.PlaneGeometry( 10, 10 ); // Adjust size as needed
+    const planeMaterial = new THREE.MeshStandardMaterial({
+      color: 0x222222, // Dark grey
+      metalness: 0.6,  // Somewhat metallic
+      roughness: 0.4   // Somewhat rough
+    });
+    const deckPlane = new THREE.Mesh( planeGeometry, planeMaterial );
+    deckPlane.rotation.x = -Math.PI / 2; // Rotate plane to be horizontal
+    scene.add( deckPlane );
+
+    // Optional: Add a grid helper for orientation
+    const gridHelper = new THREE.GridHelper( 10, 10 ); // Size matches plane
+    scene.add( gridHelper );
+
 
     // Basic lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft white light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); // Slightly brighter ambient
     scene.add(ambientLight);
     const pointLight = new THREE.PointLight(0xffffff, 1, 100);
     pointLight.position.set(5, 5, 5);
     scene.add(pointLight);
 
 
-    camera.position.z = 5;
+    // Adjust camera position to look down onto the plane
+    camera.position.set(0, 8, 5); // Positioned above and slightly back
+    camera.lookAt(0, 0, 0); // Look at the center of the scene
 
-    // Animation loop
+    // Animation loop (remove cube rotation)
     function animate() {
       requestAnimationFrame( animate );
 
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      // No automatic rotation for now
+      // cube.rotation.x += 0.01;
+      // cube.rotation.y += 0.01;
 
       renderer.render( scene, camera );
     }
