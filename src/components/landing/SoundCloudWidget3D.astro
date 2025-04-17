@@ -2,28 +2,65 @@
 // Placeholder for the 3D SoundCloud Widget
 // This will eventually contain Three.js logic
 ---
-<div id="soundcloud-widget-3d-container" class="relative w-full h-screen">
-  <p class="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-    [3D SoundCloud Widget Placeholder]
-  </p>
-  <!-- Canvas for Three.js will be added here via script -->
+<div id="soundcloud-widget-3d-container" class="relative w-full h-screen bg-gray-900"> {/* Added a dark bg */}
+  {/* Canvas for Three.js will be added here via script */}
+  {/* Removed placeholder text */}
 </div>
 
 <script client:load>
-  // Import Three.js and initialize scene, fetch SoundCloud data etc.
-  // This script will become complex.
-  // import * as THREE from 'three';
-  console.log("3D Widget script loaded. Three.js integration needed here.");
+  import * as THREE from 'three';
 
-  // Example: Basic setup indication
+  console.log("3D Widget script loaded. Initializing basic Three.js scene.");
+
   const container = document.getElementById('soundcloud-widget-3d-container');
+
   if (container) {
-    // const scene = new THREE.Scene();
-    // const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    // const renderer = new THREE.WebGLRenderer();
-    // renderer.setSize( window.innerWidth, window.innerHeight );
-    // container.appendChild( renderer.domElement );
-    // ... rest of Three.js setup ...
-    container.style.border = '1px dashed red'; // Visual placeholder
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera( 75, container.clientWidth / container.clientHeight, 0.1, 1000 );
+    const renderer = new THREE.WebGLRenderer({ antialias: true }); // Enable antialiasing
+    renderer.setSize( container.clientWidth, container.clientHeight );
+    renderer.setPixelRatio(window.devicePixelRatio); // Adjust for screen resolution
+    container.appendChild( renderer.domElement );
+
+    // Basic cube
+    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    const material = new THREE.MeshStandardMaterial( { color: 0x00ff00 } ); // Green color, requires light
+    const cube = new THREE.Mesh( geometry, material );
+    scene.add( cube );
+
+    // Basic lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft white light
+    scene.add(ambientLight);
+    const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
+
+
+    camera.position.z = 5;
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame( animate );
+
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+
+      renderer.render( scene, camera );
+    }
+
+    animate();
+
+    // Handle window resize
+    function onWindowResize() {
+        if (!container) return;
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+    }
+    window.addEventListener('resize', onWindowResize, false);
+
+  } else {
+    console.error("Container for 3D widget not found.");
   }
 </script>

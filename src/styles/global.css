@@ -24,3 +24,26 @@
     font-family: InterVariable, sans-serif;
   }
 }
+
+/* Basic Knob Styling */
+@layer components {
+  .knob {
+    @apply inline-block w-16 h-16 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 border-2 border-gray-900 shadow-lg relative cursor-pointer transition-transform duration-150 ease-in-out;
+    /* Center content inside */
+    @apply flex items-center justify-center text-center;
+  }
+  .knob::after {
+    /* Indicator line */
+    content: '';
+    @apply absolute top-1 left-1/2 w-1 h-4 bg-gray-300 rounded -translate-x-1/2;
+    /* transform-origin: bottom center; */ /* Needed for JS rotation later */
+  }
+  .knob-label {
+     /* Style for text inside/below knob */
+    @apply text-xs text-gray-300 uppercase font-mono absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap;
+  }
+  /* Optional: Add a subtle hover effect */
+  .knob:hover {
+     @apply scale-105;
+  }
+}

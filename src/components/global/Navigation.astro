@@ -26,11 +26,18 @@
         <span>AudioTheft</span>
       </a>
 
-      <a
-        class="hover:text-white focus:outline-none focus:shadow-none focus:text-white/90"
-        href="https://lexingtonthemes.lemonsqueezy.com/checkout/buy/f50206e4-c120-45bd-aa1e-22681509cdd4"
-        >About AudioTheft
-      </a>
+      {/* Replace standard link with knob style */}
+      <div class="relative"> {/* Container for positioning label */}
+        <a
+          href="#" {/* Replace with actual link later if needed, or handle via JS */}
+          class="knob"
+          aria-label="About AudioTheft" {/* Accessibility */}
+        >
+          {/* Icon or text can go inside if needed, but keep it small */}
+        </a>
+        <span class="knob-label">About</span> {/* Label below */}
+      </div>
+
     </div>
   </div>
-</div>
+</nav> {/* Corrected closing tag from </div> to </nav> */}
