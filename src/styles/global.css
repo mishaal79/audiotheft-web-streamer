@@ -52,4 +52,9 @@ body {
   .knob:hover {
      @apply scale-105;
   }
+  /* Style for when the knob is being dragged */
+  .knob-active {
+    @apply shadow-inner ring-2 ring-cyan-500/50; /* Example: inner shadow + subtle ring */
+    /* @apply scale-105; */ /* Optional: keep hover scale while active */
+  }
 }
