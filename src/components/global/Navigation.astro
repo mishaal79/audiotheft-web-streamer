@@ -40,4 +40,83 @@
 
     </div>
   </div>
-</nav> {/* Corrected closing tag from </div> to </nav> */}
+</nav>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const knob = document.querySelector('.knob') as HTMLElement | null;
+  const knobIndicator = knob ? window.getComputedStyle(knob, '::after') : null; // Note: Direct style manipulation of pseudo-elements is tricky. We'll rotate the knob itself and the ::after will follow.
+
+  if (knob) {
+    let isDragging = false;
+    let startX = 0;
+    let startRotation = 0;
+    let currentRotation = 0; // Store current rotation
+
+    // Get initial rotation if any (e.g., from previous state or CSS)
+    // For simplicity, we assume it starts at 0
+    // startRotation = gsap.getProperty(knob, "rotation"); // Requires importing CSSPlugin if not default
+
+    knob.addEventListener('mousedown', (e) => {
+      if (!(e.target instanceof Element) || !e.target.closest('.knob')) return; // Ensure click is on knob
+      isDragging = true;
+      startX = e.clientX;
+      // Use the stored currentRotation as the starting point for this drag
+      startRotation = currentRotation;
+      knob.style.cursor = 'grabbing'; // Change cursor
+      // Prevent text selection during drag
+      document.body.style.userSelect = 'none';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging || !knob) return;
+
+      const currentX = e.clientX;
+      const deltaX = currentX - startX;
+
+      // Sensitivity factor: how much mouse movement translates to rotation
+      const sensitivity = 0.5; // Adjust as needed (degrees per pixel)
+      const rotationChange = deltaX * sensitivity;
+
+      // Calculate new rotation, limit range if desired (e.g., -135 to 135 degrees)
+      let newRotation = startRotation + rotationChange;
+      // Example limiting:
+      // newRotation = Math.max(-135, Math.min(135, newRotation));
+
+      // Use GSAP to smoothly animate rotation
+      gsap.to(knob, {
+        rotation: newRotation,
+        duration: 0.1, // Short duration for responsiveness
+        ease: 'power1.out'
+      });
+       // Update the stored rotation
+      currentRotation = newRotation;
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        if (knob) {
+            knob.style.cursor = 'pointer'; // Restore cursor
+        }
+        // Restore text selection
+        document.body.style.userSelect = '';
+      }
+    });
+
+     // Optional: Stop dragging if mouse leaves the window entirely
+    document.addEventListener('mouseleave', () => {
+        if (isDragging) {
+            isDragging = false;
+            if (knob) {
+                knob.style.cursor = 'pointer';
+            }
+            document.body.style.userSelect = '';
+        }
+    });
+
+  } else {
+    console.warn("Knob element not found for interaction.");
+  }
+</script>

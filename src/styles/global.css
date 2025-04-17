@@ -36,7 +36,7 @@
     /* Indicator line */
     content: '';
     @apply absolute top-1 left-1/2 w-1 h-4 bg-gray-300 rounded -translate-x-1/2;
-    /* transform-origin: bottom center; */ /* Needed for JS rotation later */
+    transform-origin: bottom center; /* Set rotation origin */
   }
   .knob-label {
      /* Style for text inside/below knob */
