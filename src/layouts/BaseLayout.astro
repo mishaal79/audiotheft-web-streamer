@@ -12,12 +12,23 @@ import LoadingAnimation from "@/components/global/LoadingAnimation.astro"; // Im
 
   <body class="bg-black text-white"> {/* Added text-white for base visibility */}
     <LoadingAnimation /> {/* Add the loading animation */}
-    {/* Consider hiding Nav/Footer until load? Or style them appropriately */}
+    {/* Navigation component handles its own initial opacity */}
     <Navigation />
-    <main id="main-content"> {/* Wrap slot in main */}
+    {/* Main content starts hidden */}
+    <main id="main-content" class="opacity-0">
       <slot />
     </main>
+    {/* Footer component's root is targeted, starts hidden via GSAP */}
     <Footer />
+
+    {/* Background Audio Player */}
+    {/* IMPORTANT: Replace 'public/audio/background.mp3' with your actual audio file path */}
+    {/* Ensure the audio file exists in the 'public/audio/' directory */}
+    <audio id="background-audio" loop>
+      <source src="/audio/background.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"

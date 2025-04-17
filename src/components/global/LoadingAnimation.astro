@@ -7,28 +7,47 @@
 </div>
 
 <script>
-  // Basic example: Hide overlay after a delay
-  // A real implementation would wait for content/assets to load
-  // and use GSAP or another library for smooth animation.
   import { gsap } from 'gsap';
 
-  function hideLoader() {
-    gsap.to("#loading-overlay", {
-      opacity: 0,
-      duration: 0.5,
+  const overlay = document.getElementById("loading-overlay");
+  const logo = document.getElementById("loading-logo");
+  const mainContent = document.getElementById("main-content");
+  const navigation = document.getElementById("main-navigation"); // Use ID selector
+  const footer = document.querySelector("footer"); // Footer uses tag selector
+
+  function startAnimationSequence() {
+    // Ensure elements exist
+    if (!overlay || !logo || !mainContent || !navigation || !footer) {
+      console.error("Loader or content elements not found!");
+      // Fallback: just remove overlay if elements are missing
+      overlay?.remove();
+      // Ensure content is visible if loader fails
+      gsap.set([mainContent, navigation, footer], { opacity: 1 });
+      return;
+    }
+
+    // Initially hide main content, nav, footer (Nav opacity is also set in its component)
+    gsap.set([mainContent, footer], { opacity: 0 }); // Only set main/footer here
+
+    // Sequence: Fade logo in, wait, fade overlay out, then fade content in
+    const tl = gsap.timeline({
       onComplete: () => {
-        document.getElementById("loading-overlay")?.remove();
+        overlay.remove(); // Remove overlay from DOM after animation
+        // Attempt to play audio - NOTE: May be blocked by browser until user interaction
+        const audio = document.getElementById('background-audio') as HTMLAudioElement | null;
+        audio?.play().catch(e => console.warn("Audio autoplay blocked:", e));
       }
     });
-    // Start background audio here if desired, after user interaction or loader finish
-    // document.getElementById('background-audio')?.play();
+
+    tl.to(logo, { opacity: 1, duration: 0.8, ease: "power1.inOut" }) // Fade logo in
+      .to(logo, { duration: 0.5 }) // Hold logo visibility
+      .to(overlay, { opacity: 0, duration: 0.6, ease: "power1.inOut" }) // Fade overlay out
+      .to([navigation, mainContent, footer], { opacity: 1, duration: 0.5, stagger: 0.1 }); // Fade content in
   }
 
-  // Example: Hide after 2 seconds. Replace with actual load detection.
-  window.addEventListener('load', () => {
-     // Or use setTimeout for demo purposes
-     setTimeout(hideLoader, 500);
-  });
+
+  // Trigger sequence on window load (adjust trigger as needed)
+  window.addEventListener('load', startAnimationSequence);
 
 </script>
 
