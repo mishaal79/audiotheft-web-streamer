@@ -7,7 +7,8 @@ import SoundCloudWidget3D from "@/components/landing/SoundCloudWidget3D.astro"; 
 
 <BaseLayout>
   {/* The 3D widget will likely take up significant space */}
-  <SoundCloudWidget3D client:load />
+  {/* Remove client:load - Astro components aren't hydrated. The script inside handles client-side logic. */}
+  <SoundCloudWidget3D />
   {/* Add other sections like RecentEpisodes back as needed */}
   {/* <RecentEpisodes /> */}
 </BaseLayout>
