@@ -1,0 +1,41 @@
+---
+// Placeholder for loading animation logic (e.g., using GSAP)
+---
+<div id="loading-overlay" class="fixed inset-0 bg-black z-50 flex items-center justify-center text-white">
+  <p>Loading...</p>
+  <!-- Animation elements will go here -->
+</div>
+
+<script>
+  // Basic example: Hide overlay after a delay
+  // A real implementation would wait for content/assets to load
+  // and use GSAP or another library for smooth animation.
+  import { gsap } from 'gsap';
+
+  function hideLoader() {
+    gsap.to("#loading-overlay", {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        document.getElementById("loading-overlay")?.remove();
+      }
+    });
+    // Start background audio here if desired, after user interaction or loader finish
+    // document.getElementById('background-audio')?.play();
+  }
+
+  // Example: Hide after 2 seconds. Replace with actual load detection.
+  window.addEventListener('load', () => {
+     // Or use setTimeout for demo purposes
+     setTimeout(hideLoader, 500);
+  });
+
+</script>
+
+<style>
+  /* Basic styling for the overlay */
+  #loading-overlay {
+    /* Add transition styles if using CSS transitions */
+    transition: opacity 0.5s ease-out;
+  }
+</style>

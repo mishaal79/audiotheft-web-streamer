@@ -2,6 +2,7 @@
 import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/global/Navigation.astro";
 import Footer from "@/components/global/Footer.astro";
+import LoadingAnimation from "@/components/global/LoadingAnimation.astro"; // Import the new component
 ---
 
 <html lang="en">
@@ -9,9 +10,13 @@ import Footer from "@/components/global/Footer.astro";
     <BaseHead />
   </head>
 
-  <body class="bg-black">
+  <body class="bg-black text-white"> {/* Added text-white for base visibility */}
+    <LoadingAnimation /> {/* Add the loading animation */}
+    {/* Consider hiding Nav/Footer until load? Or style them appropriately */}
     <Navigation />
-    <slot />
+    <main id="main-content"> {/* Wrap slot in main */}
+      <slot />
+    </main>
     <Footer />
     <script
       defer

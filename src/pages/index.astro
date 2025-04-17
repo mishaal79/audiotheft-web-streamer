@@ -1,9 +1,13 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Hero from "@/components/landing/Hero.astro";
-import RecentEpisodes from "@/components/landing/RecentEpisodes.astro";
+// import Hero from "@/components/landing/Hero.astro"; // Remove old Hero
+// import RecentEpisodes from "@/components/landing/RecentEpisodes.astro"; // Keep if needed later, remove for now
+import SoundCloudWidget3D from "@/components/landing/SoundCloudWidget3D.astro"; // Import the new widget
 ---
 
 <BaseLayout>
-  <Hero />
+  {/* The 3D widget will likely take up significant space */}
+  <SoundCloudWidget3D client:load />
+  {/* Add other sections like RecentEpisodes back as needed */}
+  {/* <RecentEpisodes /> */}
 </BaseLayout>
