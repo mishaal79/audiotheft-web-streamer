@@ -14,6 +14,23 @@
 
   const container = document.getElementById('soundcloud-widget-3d-container');
 
+  // Function to fetch track data
+  async function fetchTracks() {
+    try {
+      const response = await fetch('/api/soundcloud-tracks.json');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const tracks = await response.json();
+      console.log("Fetched SoundCloud Tracks:", tracks);
+      // TODO: Use this 'tracks' data to create 3D elements
+      return tracks;
+    } catch (error) {
+      console.error("Failed to fetch SoundCloud tracks:", error);
+      return null; // Return null or empty array on error
+    }
+  }
+
   if (container) {
     // Scene setup
     const scene = new THREE.Scene();
@@ -72,6 +89,9 @@
         renderer.setSize(container.clientWidth, container.clientHeight);
     }
     window.addEventListener('resize', onWindowResize, false);
+
+    // Fetch tracks when the component loads
+    fetchTracks();
 
   } else {
     console.error("Container for 3D widget not found.");
