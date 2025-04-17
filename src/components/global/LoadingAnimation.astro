@@ -1,9 +1,16 @@
 ---
-// Placeholder for loading animation logic (e.g., using GSAP)
+// Import the SVG using Astro's asset handling
+import logoWhite from '@/assets/logo-white.svg';
 ---
-<div id="loading-overlay" class="fixed inset-0 bg-black z-50 flex items-center justify-center text-white">
-  <p>Loading...</p>
-  <!-- Animation elements will go here -->
+<div id="loading-overlay" class="fixed inset-0 bg-black z-50 flex items-center justify-center text-white opacity-100">
+  <!-- Use the imported SVG asset -->
+  <img
+    id="loading-logo"
+    src={logoWhite.src}
+    alt="Loading Logo"
+    width={logoWhite.width / 4}  {# Adjust size as needed, e.g., divide original width #}
+    height={logoWhite.height / 4} {# Adjust size as needed #}
+    class="opacity-0" />
 </div>
 
 <script>
@@ -52,9 +59,8 @@
 </script>
 
 <style>
-  /* Basic styling for the overlay */
+  /* Basic styling for the overlay - opacity handled by GSAP */
   #loading-overlay {
-    /* Add transition styles if using CSS transitions */
-    transition: opacity 0.5s ease-out;
+    /* Ensure it stays on top */
   }
 </style>
