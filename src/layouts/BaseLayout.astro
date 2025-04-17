@@ -10,7 +10,7 @@ import LoadingAnimation from "@/components/global/LoadingAnimation.astro"; // Im
     <BaseHead />
   </head>
 
-  <body class="bg-black text-white"> {/* Added text-white for base visibility */}
+  <body> {/* Removed bg-black text-white - handled by global.css */}
     <LoadingAnimation /> {/* Add the loading animation */}
     {/* Navigation component handles its own initial opacity */}
     <Navigation />

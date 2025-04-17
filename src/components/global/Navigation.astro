@@ -65,6 +65,7 @@
       // Use the stored currentRotation as the starting point for this drag
       startRotation = currentRotation;
       knob.style.cursor = 'grabbing'; // Change cursor
+      knob.classList.add('knob-active'); // Add active class
       // Prevent text selection during drag
       document.body.style.userSelect = 'none';
     });
@@ -81,8 +82,8 @@
 
       // Calculate new rotation, limit range if desired (e.g., -135 to 135 degrees)
       let newRotation = startRotation + rotationChange;
-      // Example limiting:
-      // newRotation = Math.max(-135, Math.min(135, newRotation));
+      // Limit rotation range (e.g., -135 to 135 degrees)
+      newRotation = Math.max(-135, Math.min(135, newRotation));
 
       // Use GSAP to smoothly animate rotation
       gsap.to(knob, {
@@ -95,25 +96,27 @@
     });
 
     document.addEventListener('mouseup', () => {
-      if (isDragging) {
-        isDragging = false;
-        if (knob) {
-            knob.style.cursor = 'pointer'; // Restore cursor
-        }
-        // Restore text selection
+     if (isDragging) {
+       isDragging = false;
+       if (knob) {
+           knob.style.cursor = 'pointer'; // Restore cursor
+           knob.classList.remove('knob-active'); // Remove active class
+       }
+       // Restore text selection
         document.body.style.userSelect = '';
       }
     });
 
      // Optional: Stop dragging if mouse leaves the window entirely
     document.addEventListener('mouseleave', () => {
-        if (isDragging) {
-            isDragging = false;
-            if (knob) {
-                knob.style.cursor = 'pointer';
-            }
-            document.body.style.userSelect = '';
-        }
+       if (isDragging) {
+           isDragging = false;
+           if (knob) {
+               knob.style.cursor = 'pointer';
+               knob.classList.remove('knob-active'); // Remove active class
+           }
+           document.body.style.userSelect = '';
+       }
     });
 
   } else {
