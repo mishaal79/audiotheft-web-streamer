@@ -31,7 +31,20 @@
     }
   }
 
-  if (container) {
+  // Main async function to initialize the scene
+  async function initScene() {
+    if (!container) {
+      console.error("Container for 3D widget not found.");
+      return;
+    }
+
+    // Fetch tracks first
+    const tracks = await fetchTracks();
+    if (!tracks || tracks.length === 0) {
+      console.warn("No tracks fetched or available, skipping track visualization.");
+      // Optionally display a message in the 3D scene
+    }
+
     // Scene setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera( 75, container.clientWidth / container.clientHeight, 0.1, 1000 );
@@ -68,6 +81,33 @@
     camera.position.set(0, 8, 5); // Positioned above and slightly back
     camera.lookAt(0, 0, 0); // Look at the center of the scene
 
+    // Texture Loader
+    const textureLoader = new THREE.TextureLoader();
+    const placeholderTexture = textureLoader.load('/placeholder-art.png'); // Load placeholder
+
+    // Create visuals for tracks if data exists
+    const trackMeshes = []; // To store meshes for interaction later
+    if (tracks) {
+        const trackGeometry = new THREE.PlaneGeometry(1.5, 1.5); // Size of track representation
+        const spacing = 2.0; // Spacing between tracks
+        const startX = -((tracks.length - 1) * spacing) / 2; // Calculate starting position for centering
+
+        tracks.forEach((track, index) => {
+            // TODO: Load actual track.artwork_url when available
+            const trackMaterial = new THREE.MeshBasicMaterial({ map: placeholderTexture, side: THREE.DoubleSide });
+            const trackMesh = new THREE.Mesh(trackGeometry, trackMaterial);
+
+            // Position the track plane on the deck
+            trackMesh.position.set(startX + index * spacing, 0.05, 0); // Slightly above the deck plane
+            // Keep it flat on the deck (no rotation needed if deck is at y=0 and plane is created in xy)
+            // trackMesh.rotation.x = -Math.PI / 2; // Only needed if plane geometry is oriented differently
+
+            scene.add(trackMesh);
+            trackMeshes.push({ mesh: trackMesh, trackData: track }); // Store mesh and data
+        });
+    }
+
+
     // Animation loop (remove cube rotation)
     function animate() {
       requestAnimationFrame( animate );
@@ -90,10 +130,12 @@
     }
     window.addEventListener('resize', onWindowResize, false);
 
-    // Fetch tracks when the component loads
-    fetchTracks();
+    // Start the animation loop
+    animate();
 
-  } else {
-    console.error("Container for 3D widget not found.");
-  }
+  } // End of initScene function
+
+  // Call the main initialization function
+  initScene();
+
 </script>
