@@ -1,0 +1,80 @@
+# Add soundtracks to the webpage
+
+The current player on the webpage is not universal
+It plays the tracks concurrently
+
+How to add sountracks using a CMS integration
+
+
+# Add Soundcloud embed logo
+<iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Fundefined&color=black_white&size=32" style="width: 32px; height: 32px;"></iframe>
+
+
+# embed a single track code
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1880218623&color=%234a4c54&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/audiotheft" title="Audio Theft" target="_blank" style="color: #cccccc; text-decoration: none;">Audio Theft</a> · <a href="https://soundcloud.com/audiotheft/sand-trails-to-valhalla" title="Sand Trails to Valhalla" target="_blank" style="color: #cccccc; text-decoration: none;">Sand Trails to Valhalla</a></div>
+
+
+All the soundcloud tracks embed will have the same iframe and player features
+
+- how to add the above using a CMS platform ?
+
+
+# How to build a music player app hosted online
+
+Store the music as mp3 files which can be streamed
+Store the metadata about the music tracks in a database
+
+
+Items in a soundtrack component
+
+- title of the soundtrack
+- duration
+- thumbnail
+- url to soundcloud source
+- Description
+
+function which will produce an embed link from a soundcloud url
+-
+
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1880218623&color=%234a4c54&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/audiotheft" title="Audio Theft" target="_blank" style="color: #cccccc; text-decoration: none;">Audio Theft</a> · <a href="https://soundcloud.com/audiotheft/sand-trails-to-valhalla" title="Sand Trails to Valhalla" target="_blank" style="color: #cccccc; text-decoration: none;">Sand Trails to Valhalla</a></div>
+
+
+With ombed URL I can query the URL of the soundtrack and then from that generate the embed source code
+In this the user has to enter each URL datum to a file where the website can query from
+
+
+curl "https://soundcloud.com/oembed" -d 'format=json' -d 'url=https://soundcloud.com/audiotheft/sand-trails-to-valhalla'
+
+
+SOUNDCLOUD_USER=audiotheft
+SOUNDCLOUD_USER_ID=
+
+Lets add all the tracks statically for the time
+
+Dynamically doing these require the following
+
+- client id and client secret
+- authenticate with the soundcloud api
+- then perform your request with key obtained
+- then return the info to the front end
+- all this can be done using a vercel serverless function
+
+So basically soundcloud doesn't have functionality to get an API access code
+
+ChatGPT recommended using RSS feeds and integrating with something else
+
+I think went down this path long enough.
+Backout and add static tracks for the time
+
+# Idea to pivot away from the current layout of episodes
+Instead have a player with ability to select and play tracks from a soundcloud/mixcloud playlist
+
+# How can I get the tracks from the playlist and display It
+
+# Add  soundscapes background reel which shifts with animations
+
+Add a soundscapes background reel which shifts with animations to the backdrop
+This should go over where the main info on the left is
+Maybe the current soundtracks thumbnails in a slow but groovy motion
